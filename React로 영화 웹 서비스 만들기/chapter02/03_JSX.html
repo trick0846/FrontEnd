@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <div id="app"></div>
+</body>
+<script src="https://unpkg.com/react@17.0.2/umd/react.production.min.js"></script>
+<script src="https://unpkg.com/react-dom@17.0.2/umd/react-dom.production.min.js"></script>
+<script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
+<!-- babel에게 코드를 넘겨주기!! We give babel this code -->
+<script type="text/babel">
+
+  // (1) const로 정의한 후에 사용
+
+  // const root = document.getElementById("app")
+
+  // const Title = (
+  //   <h3 id="title" class="black yellow" onMouseEnter={()=>console.log("mouse enter")}>Hello</h3>
+  // )
+  // const Button = (
+  //   <button onClick={() => console.log("click")}>Click me</button>
+  // )
+
+  // const container = React.createElement("div", null, [Title, Button])
+  // // Babel standalone을 사용해서  browser가 JSX를 이해하도록 하기
+  // ReactDOM.render(container, root); 
+
+
+
+  // (2) function 으로 정의하여 사용
+  const root = document.getElementById("app")
+
+  function Title () {
+    return(
+      <h3 id="title" class="black yellow" onMouseEnter={()=>console.log("mouse enter")}>Hello</h3>
+    )
+  }
+
+  function Button () {
+    return(
+      <button onClick={() => console.log("click")}>Click me</button>
+    )
+  }
+
+  function Container () {
+    return(
+      <div>
+        <Title />
+        <Button />
+      </div>
+    )
+  }
+  // 대문자로 적어주는 이유는 Component와 Tag를 구분하기 위해서!!
+  // ReactDOM.render(Container,root)
+  ReactDOM.render(<Container/>,root)
+
+  
+
+
+
+
+
+  // 개념적으로 알면 좋은 것! 또는 정리해야할 내용!
+//   div에 const 넣기 위해선
+// 1. const를 함수로 만들어 줘야함 const Btn = () => ( );
+// -> arrow function 이라고 부름
+// = () => ( ); 는 function Btn() { return ( ); } 와 같음
+// 2. HTML 태그처럼 만들어서 넣어줌
+// 3. (중요) 컴포넌트의 첫 글자는 반드시 대문자여야 함
+// -> 우리가 직접 만든 요소는 전부 대문자로 시작해야 함
+</script>
+</html>

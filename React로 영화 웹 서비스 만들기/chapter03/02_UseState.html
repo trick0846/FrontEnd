@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+<body>
+  <div id="app"></div>
+</body>
+<script src="https://unpkg.com/react@17.0.2/umd/react.production.min.js"></script>
+<!-- 현재 react17로 사용하고 있기때문에 root.render()로 작성하지 않고,
+ 강의의 흐름을 따라가도 괜찮다!! -->
+<script src="https://unpkg.com/react-dom@17.0.2/umd/react-dom.production.min.js"></script>
+<script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
+
+<script type="text/babel">
+  const root = document.getElementById("app")
+  function Container () {
+    const [data, setData] = React.useState(0);
+    // React 안에 있는 기능을 사용
+    // 배열에 있는 요소들을 unpacking
+    function handleCounter () {
+      console.log(456)
+      setData(data+1) // Updating the value of Data
+      // Re-rendered without using render function
+
+      // setData(current => current + 1)
+      // 이전값인 prevData로 변수명을 설정하기도 한다.
+      // 현재 state값을 기준으로 변경하고 싶다면 다음과 같이 설정하기!
+      
+    }
+    console.log(123)
+    return(
+      <div>
+        <h3>hello, world! Total Click : {data} </h3>
+        <button id="btn" onClick={handleCounter}>click me!</button>
+      </div>
+    )
+  }
+  console.log(789)
+  ReactDOM.render(<Container />, root)
+  
+
+</script>
+</html>
+

@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+<body>
+  <div id="app"></div>
+</body>
+<script src="https://unpkg.com/react@17.0.2/umd/react.production.min.js"></script>
+<!-- 현재 react17로 사용하고 있기때문에 root.render()로 작성하지 않고,
+ 강의의 흐름을 따라가도 괜찮다!! -->
+<script src="https://unpkg.com/react-dom@17.0.2/umd/react-dom.production.min.js"></script>
+<script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
+
+<script type="text/babel">
+  // 함수와 변수는 재사용이 가능하다!
+  const root = document.getElementById("app")
+  // rerendering
+  function render() {
+      ReactDOM.render(<Container />, root)
+      // 함수로 바꾸어주었기때문에 이처럼 컴포넌트로 넣어주어야한다!
+    }
+  let counter = 0;
+
+  function Container () {
+    // counter 변수 설정하기
+    function handleCounter () {
+      console.log(counter)
+      counter += 1
+      render(); // event listener이 실행될때마다 재렌더링
+    }
+    return(
+      <div>
+        <h3>hello, world! Total Click : {counter} </h3>
+        <button id="btn" onClick={handleCounter}>click me!</button>
+      </div>
+    )
+    // 이처럼 작성하게되면 화면에 한번만 렌더링되므로 변화가 표시되지않는다!
+  }
+  render(); // 1) 페이지가 맨처음 렌더링 될때 실행
+  
+
+</script>
+</html>
+

@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <div id="app"></div>
+</body>
+<script src="https://unpkg.com/react@17.0.2/umd/react.production.min.js"></script>
+<script src="https://unpkg.com/react-dom@17.0.2/umd/react-dom.production.min.js"></script>
+<script>
+
+  // 두번째 방법
+  // 이번 방식의 경우 현직에서 잘 쓰지않는 방식이다. but 본질을 이해하기 위해서 연습해보기
+  // 모든 react element를  HTML body에 둘 수 있도록 해준다.
+  const root = document.getElementById("app")
+
+  const heading = React.createElement("h3", {id:"first-span",class:"yellow black", onMouseEnter:()=>console.log("h3click")}, "hello I am span")
+  //내가 생성하고자 하는 태그와 같은 이름이여야한다!
+  // 화면에 표시하기 위해서는 react-dom이 필요하다!
+  // 두번째 argument에는 properties(id, style, class, eventlistener 등등)
+  // 세번째 argument에는 content
+
+  const btn = React.createElement("button",{
+    onClick: () => console.log("click"), style:{backgroundColor:"tomato"},
+    },
+    "Click Me!");
+  // style에 -를 넣으면 인식 X, Camel case로 적어두자! (snake case X!!)
+  // property에 event listener를 넣을수도 있다!!!
+
+  const hr = React.createElement("hr")
+  const container = React.createElement("div", null, [heading, btn, hr]);
+  // 이런식으로 내가 넣고 싶은 내용 뿐만 아니라 태그를 넣을수도 있다!!
+
+
+  ReactDOM.render(container, root); // 여기에서 ReactDOM 사용 = ReactElement를 root div 안에서 보여줘
+  // 정리하자면 vanilla JavaScipt에서는 HTML 생성 -> JavaScript에서 HTML을 수정
+  // React에서는 JavaScript에서 시작해서 HTML 생성
+  // React는 interectivity를 위한 코드!
+
+</script>
+</html>
