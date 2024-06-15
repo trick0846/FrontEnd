@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+<body>
+  <div id="app"></div>
+  <script src="https://unpkg.com/react@17.0.2/umd/react.development.js"></script>
+  <script src="https://unpkg.com/react-dom@17.0.2/umd/react-dom.development.js"></script>
+  <script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
+  <!--
+  production.min.js  /  development.js
+  production(배포모드) / (개발모드)
+  여기에서 production으로 설치했기때문에 label for에서 오류가 발생하지 않음.
+  development로 변경시에는 for이 javaScript의 for로 인식되어서 오류가 발생
+  따라서 for -> htmlFor / class -> className
+  -->
+   
+
+  <script type="text/babel">
+    const root = document.getElementById("app")
+
+
+    function Container () {
+      const [ amount, setAmount]  = React.useState(0);
+      
+      // first : value, second : setState / a function to modifiy the value
+      // a parameter in useState() is default value
+      // 굳이 변수를 많이 만들필요없이 아래와 같이 함수를 설정하면 된다!!
+
+      const [ flipped, setFlipped ]  = React.useState(false);
+
+      // 시간 단위 변환 event handler
+      function onChange (event) {
+        setAmount(event.target.value)
+      }
+
+      function reset () {
+        setAmount(0)
+      }
+
+      // button event handler
+      function onFlip () {
+        // setFlipped(!flipped)
+        setFlipped(current => !current)
+      }
+
+      return(
+        <div className="">
+          <h1>Super Converter</h1>
+          {/* <h4>You want to convert {amount}</h4> */} 
+          <label htmlFor="minutes" > Minutes</label>
+          <input
+            value={flipped ? amount * 60 : amount} 
+            // value={flipped ?}
+            id="minutes"
+            placeholder="Minutes"
+            type="number"
+            onChange={onChange}
+            // disabled={flipped === true}
+            disabled={flipped}
+          />
+          <br />
+          <label htmlFor="hours" >Hours</label>
+          <input
+            // value={Math.round(minutes/60)}
+            // flipped === false일 때 변동 X이므로 우항에 Math.round(minutes/60)
+            value={flipped ? amount : Math.round(amount/60)}
+            id="hours"
+            placeholder="Hours"
+            type="number"
+            onChange={onChange}
+            // disabled={flipped === false}
+            disabled={!flipped}
+          />
+          <br />
+          <button onClick={reset}>Reset</button>
+          <button onClick={onFlip} ><span>modify </span>{flipped ? "minutes":"hours"}</button>
+        </div>
+      )
+    }
+
+    ReactDOM.render(<Container />,root)
+  </script>
+</body>
+</html>

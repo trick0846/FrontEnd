@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+<body>
+  <script src="https://unpkg.com/react@17.0.2/umd/react.development.js"></script>
+  <script src="https://unpkg.com/react-dom@17.0.2/umd/react-dom.development.js"></script>
+  <script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
+
+  <div id="app"></div>
+
+  <script type="text/babel">
+    
+    function MinutesToHours() {
+      const [ amount, setAmount]  = React.useState(0);
+      const [ flipped, setFlipped ]  = React.useState(false);
+
+      function onChange (event) {
+        setAmount(event.target.value)
+      }
+
+      function reset () {
+        setAmount(0)
+      }
+
+      function onFlip () {
+        setFlipped(current => !current)
+      }
+
+      return(
+        <div className="">
+          <label htmlFor="minutes" > Minutes</label>
+          <input
+            value={flipped ? amount * 60 : amount} 
+            id="minutes"
+            placeholder="Minutes"
+            type="number"
+            onChange={onChange}
+            disabled={flipped}
+          />
+          <br />
+          <label htmlFor="hours" >Hours</label>
+          <input
+            value={flipped ? amount : Math.round(amount/60)}
+            id="hours"
+            placeholder="Hours"
+            type="number"
+            onChange={onChange}
+            disabled={!flipped}
+          />
+          <br />
+          <button onClick={reset}>Reset</button>
+          <button onClick={onFlip} ><span>modify </span>{flipped ? "minutes":"hours"}</button>
+        </div>
+      )
+    }
+    
+    function KmToMiles() {
+      return (
+        <p>KmToMiles</p>
+      )
+    }
+    
+    
+    function App() {
+      const [index, setIndex] = React.useState("0")
+
+      const onSelect = (event) => {
+        console.log(event.target.value)
+        // 여기서 값을 설정해주지않으면 index가 자동적으로 바뀌지는 않는다.
+        setIndex(event.target.value)
+      }
+      return (
+        <div>
+          <h1>SUper Converter</h1>
+          {/* 이 부분에서 value는 select의 초기값이라고 생각하자!!*/}
+          <select value={index} onChange={onSelect}>
+            <option value="0">Minutes & Hours</option>
+            <option value="1">Km & Miles</option>
+          </select>
+
+          {index === "0" ? <MinutesToHours/>:<KmToMiles/>}
+          {/*
+          // 초반에 아무것도 안보이게하려면 각 컴포넌트마다 조건을 설정해야한다.
+          //{index === "0" ? <MinutesToHours/>:null}
+          */}
+        </div>
+        )
+      }
+      const root = document.getElementById("app")
+    ReactDOM.render(<App/>, root)
+  </script>
+</body>
+</html>

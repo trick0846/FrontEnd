@@ -168,3 +168,5 @@ const handleChange = (value, event) => {
 />;
 
 ```
+
+# 예제에서 inverted로 변경 => 단축키 찾아서 변경하기!!
