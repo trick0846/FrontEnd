@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+<body>
+  <script src="https://unpkg.com/react@17.0.2/umd/react.development.js"></script>
+  <script src="https://unpkg.com/react-dom@17.0.2/umd/react-dom.development.js"></script>
+  <script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
+
+
+  <script src="https://unpkg.com/prop-types@15.7.2/prop-types.js"></script>
+  <div id="app"></div>
+
+  <script type="text/babel">
+    function Btn({text, fontSize = 14}) { // 이런식으로 기본값을 설정하는 것도 가능하다!
+      console.log(`${text} is render`)
+      return (
+        <button
+          style={{
+            backgroundColor: "tomato",
+            color:"white",
+            padding:"10px 20px",
+            borderRadius:"10px",
+            border:"0",
+            fontSize
+            }}
+        >
+          {text}
+        </button>
+      )
+    }
+
+    // 코드를 작성하는과정에서 문법사의 오류는 없으나
+    // 계획한대로 변수가 들어가지 않았을 때(문자를 넣어야하는데 숫자가 들어감 등등)
+    // propTypes를 사용한다.
+    Btn.propTypes = {
+      text:PropTypes.string, // state의 이름 : PropTypes. 타입(소문자)
+      fontSize:PropTypes.number
+    }
+    function App() {
+      const [ value, setValue ] = React.useState("Save Change");
+      return (
+        <div>
+          <Btn text={value} fontSize={18}/>
+          <Btn text="Confirm" fontSize="asdf"/>
+        </div>
+      )
+    }
+
+    const root = document.getElementById("app")
+    ReactDOM.render(<App/>, root)
+  </script>
+</body>
+</html>
