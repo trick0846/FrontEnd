@@ -34,3 +34,21 @@ useEffect(effect: React.EffectCallback, React.DependencyList)
 ```
 
 ## CleanUp function
+- 코드 작성 팁! : 삼항연산자 사용하기!
+```jsx
+function CleanUp () {
+  const [ showing, setShowing ] = useState(false);
+  const onClick = () => setShowing(prev => !prev)
+  return (
+    <div>
+      <button onClick={onClick}>{showing ? "Hide" : "Show"}</button>
+      {showing ? <Hello/>:null} 
+    </div>
+  );
+}
+```
+- 코드가 create될 때 뿐만 아니라 destroy될 때도 특정 함수 실행 가능하다!!
+
+```jsx
+
+```
