@@ -4,8 +4,26 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Document</title>
+  <style>
+    div {
+      position: fixed;
+      bottom:100px;
+      width: 100px;
+      height: 50px;
+      border-radius: 10% 10% 0 0;
+      background-color: red;
+      margin-bottom: 10px;
+      transition-property: height, background-color; /* 어떤 css 프로퍼티를 transition할지 지정 */
+      transition-duration: 2s, 2s; /* width와 bg-color가 2초동안 변화 */
+    }
+    
+    div:hover { /* 마우스를 올리면 transition발동해서 적용될 상태 */
+      height: 300px;
+      background-color: rgb(47, 255, 0);
+    }
+  </style>
 </head>
 <body>
-  
+  <div></div>
 </body>
 </html>

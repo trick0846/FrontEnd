@@ -58,7 +58,7 @@ function App() {
           {/* parameter를 넣는 방법은 vue와 유사하다!! */}
             <Detail/>
           </Route>
-          <Route path={`${process.env.PUBLIC_URL}/`}>
+          {/* <Route path={`${process.env.PUBLIC_URL}/`}> */}
             <Home />
           </Route>
         </Switch>
