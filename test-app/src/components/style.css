@@ -1,0 +1,6 @@
+.nav {
+    display: flex;
+}
+.nav>span {
+    margin: 20px;
+}
